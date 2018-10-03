@@ -54,6 +54,11 @@ def perfilUserConParametros(username=None):
     return parametro1 + ' ' + parametro2
 #http://0.0.0.0:5000/user/?variable1=hole&variable2=adios
 
+@app.errorhandler(404)
+def pagenotfound(error):
+    return "This page not found",404
+#http://0.0.0.0:5000/<CualquierOtraPagina>
+
 #Ejercicio 5
 
 @app.route('/dynamic')
@@ -97,10 +102,7 @@ def dynamic():
                     <ellipse cx="200" cy="70" rx="85" ry="55" fill="url(#grad1)" />
                 </svg>
                 '''
-@app.errorhandler(404)
-def pagenotfound(error):
-    return "This page not found",404
-#http://0.0.0.0:5000/<CualquierOtraPagina>
+
 
 if __name__ == "__main__":
   app.run(debug = True, host='0.0.0.0')
