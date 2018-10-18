@@ -1,0 +1,9 @@
+{% extends "index.html" %}
+{% block contenido %}
+  Introduzca su nuevo nomre:
+  <form action= "/cambio" method="post">
+    <label for="new_name"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="new_uname" required>
+    <button type="submit">Cambio</button>
+  </form>
+{% endblock %}

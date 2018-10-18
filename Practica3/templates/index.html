@@ -1,0 +1,110 @@
+<!doctype html>
+<title>Example</title>
+<style>
+* {
+  box-sizing: border-box;
+}
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+}
+
+div.container{
+  padding: 10px 0;
+}
+
+#main {
+  display: flex;
+  flex: 1;
+}
+#main > article {
+  flex: 1;
+}
+#main > nav,
+#main > aside {
+  flex: 0 0 20vw;
+  background: beige;
+}
+#main > nav {
+  order: -1;
+}
+
+header{
+  background: yellowgreen;
+
+  width: 100%;
+}
+footer {
+  background: yellowgreen;
+  height: 20vh;
+}
+header, footer, article, nav, aside {
+  padding: 1em;
+}
+</style>
+<body>
+  <header>
+    <a href="index.html"><img src="static/images/logo.png" id="LOGO" height="112" width="118"></a>
+    <h1>Titulo de la página</h1>
+    <h2>Subtitulo de la página</h2>
+    <div id="login">
+      {%if not uname %}
+        <form action= "/login" method="post">
+          <label for="name"><b>Username</b></label>
+          <input type="text" placeholder="Enter Username" name="uname" required>
+          <button type="submit">Login</button>
+        </form>
+      {%else%}
+        <p>Bienvenido {{session['uname']}}</p>
+        <form action="/logout">
+          <button type="submit">Logout</button>
+        </form>
+      {%endif%}
+    </div>
+  </header>
+
+  <div id="main">
+    <article>
+      {% block contenido%}
+      BIENVENIDO
+      {% endblock %}
+    </article>
+    <nav>
+      {%if not uname %}
+        <button>
+          <a href="menu1"><b>Menu 1</b></a>
+        </button>
+        <hr>
+        <button>
+          <a href="menu2"><b>Menu 2</b></a>
+        </button>
+        <hr>
+        <button>
+          <a href="menu3"><b>Menu 3</b></a>
+        </button>
+      {% else %}
+        <button>
+          <a href="menu1"><b>Menu 1</b></a>
+        </button>
+        <hr>
+        <button>
+          <a href="menu2"><b>Menu 2</b></a>
+        </button>
+        <hr>
+        <button>
+          <a href="menu3"><b>Menu 3</b></a>
+        </button>
+        <button>
+          <a href="datos"><b>Datos Usuario</b></a>
+        </button>
+        <button>
+          <a href="change"><b>Cambio datos</b></a>
+        </button>
+      {% endif %}
+    </nav>
+    <aside>Aside</aside>
+  </div>
+  <footer>Javier Galera Garrido</footer>
+</body>
