@@ -9,9 +9,10 @@ app = Flask(__name__)
 db = PickleShareDB('~/testpickleshare')     #Definicion de la BDD
 db.clear()                                  #Aseguramos que esté limpia
 
-db['users']=['Javier','Antonio','Sergio']   #Le damos valores previos
-
-usuarios_registrados = db['users']          #Cargamos el valor de la BDD en un array
+db['Javier']={'Apellido':'Galera','DNI':'75936176','pass':'qwerty'}
+db['Sergio']={'Apellido':'Martinez','DNI':'78451296','pass':'qwerty2'}   #Le damos valores previos
+db['Antonio']={'Apellido':'Jimenez','DNI':'78123123','pass':'qwerty3'}
+usuarios_registrados = db.keys()          #Cargamos el valor de la BDD en un array
 
 
 @app.route('/')
@@ -71,7 +72,9 @@ def dives():
 def dates():
     if 'uname' in session:
         uname = session['uname']
-        return render_template('login.html', uname = uname)
+        apellido = db[uname]['Apellido']
+        dni = db[uname]['DNI']
+        return render_template('login.html', uname = uname, apellido = apellido, dni = dni)
     else:
         return redirect('/')
 
@@ -83,16 +86,22 @@ def change():
     else:
         return redirect('/')
 
-@app.route('/cambio')
+@app.route('/cambio',methods=["POST"])
 def cambio():
-    return "hola"
 
-#uname = session['uname']
+    uname = session['uname'] #Old name
+    name=request.form.get('new_uname') #New name
 
-#name=request.form.get('new_uname')
-#print(name)
-#usuarios_registrados[usuarios_registrados.index(uname)]=name
-#db['users']=usuarios_registrados
+    datos = db[uname]
+    print (datos)
+    db[name] = datos
+    del db[uname]
+
+
+    apellido = db[name]['Apellido']
+    dni = db[name]['DNI']
+    return render_template('login.html', uname = name, apellido = apellido, dni = dni )
+
 
 @app.errorhandler(404)
 def pagenotfound(error):
