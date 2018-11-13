@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block contenido %}
+<h1>Modificar un Restaurante</h1>
+{%if not collection%}
+  <div class = "col-sm-4">
+    <form action= "/modifyRestaurants" method="post">
+      <label><b>Search a Restaurant</b></label>
+      <input type="text" placeholder="Enter Restaurant old name" name="old_name" required>
+      <label><b>Search a Restaurant</b></label>
+      <input type="text" placeholder="Enter Restaurant new name" name="new_name" required>
+
+      <button type="submit">Modifica el restaurantes</button>
+    </form>
+  </div>
+{%else%}
+   {{collection}}
+
+{%endif%}
+{% endblock %}

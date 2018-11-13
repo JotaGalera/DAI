@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+{% block contenido %}
+  <h1>Mostramos un restaurante por su nombre:</h1>
+  {%if not collection%}
+    <div class = "col-sm-4">
+      <form action= "/showRestaurants" method="post">
+        <label><b>Search a Restaurant</b></label>
+        <input type="text" placeholder="Enter Restaurant name" name="rest_search" required>
+        <button type="submit">Muestrame el restaurantes</button>
+      </form>
+    </div>
+  {%else%}
+     {{collection}}
+     {{count}}
+  {%endif%}
+{% endblock %}

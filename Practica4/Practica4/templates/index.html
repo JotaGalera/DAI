@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</head>
+  <link rel="stylesheet" type="text/css" href="../static/style.css" />
+<title>Example</title>
+
+<body>
+  <header>
+    <div class="jumbotron text-center">
+      <a href="index.html"><img src="static/images/logo.png" id="LOGO" height="112" width="118"></a>
+      <h1>Titulo de la página</h1>
+      <h2>Subtitulo de la página</h2>
+    </div>
+    <div class="row">
+      <div id="login">
+        {%if not uname %}
+          <form action= "/login" method="post">
+            <label for="name"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required>
+            <button type="submit">Login</button>
+          </form>
+        {%else%}
+          <p>Bienvenido {{session['uname']}}</p>
+          <form action="/logout">
+            <button type="submit">Logout</button>
+          </form>
+        {%endif%}
+      </div>
+    </div>
+  </header>
+
+  <div class="row">
+    <div class="col-sm-4" id="FC">
+      <div class="main">
+        <nav>
+          {%if not uname %}
+            <button>
+              <a href="menu1"><b>Mostrar Restaurante</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="menu2"><b>Modificar un Restaurante</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="menu3"><b>Menu 3</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="newuser"><b>Registro</b></a>
+            </button>
+          {% else %}
+            <button>
+              <a href="menu1"><b>Mostrar Restaurante</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="menu2"><b>Modificar un Restaurante</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="menu3"><b>Menu 3</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="historial"><b>Historial</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="datos"><b>Datos Usuario</b></a>
+            </button>
+            <hr>
+            <button>
+              <a href="change"><b>Cambio datos</b></a>
+            </button>
+
+          {% endif %}
+        </nav>
+      </div>
+    </div>
+    <div class="col-sm-4" id="SC">
+
+      <div class="main">
+        <article>
+          {% block contenido%}
+          BIENVENIDO
+          {% endblock %}
+        </article>
+      </div>
+
+    </div>
+    <div class="col-sm-4" id="TC">
+      <div class="main">
+        <aside>Aside</aside>
+      </div>
+    </div>
+  </div>
+  <footer>Javier Galera Garrido</footer>
+</body>
+</html>

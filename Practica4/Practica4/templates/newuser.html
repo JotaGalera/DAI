@@ -1,0 +1,19 @@
+{% extends "index.html" %}
+{% block contenido %}
+
+  <p>Introduzca su nuevo nombre:</p>
+  <div class = "col-sm-4">
+    <form action= "/register" method="post">
+      <label for="new_user"><b>Username</b></label>
+      <input type="text" placeholder="Enter Username" name="new_user" required>
+      <label for="new_apellido"><b>Last Name</b></label>
+      <input type="text" placeholder="Enter Username" name="new_apellido" required>
+      <label for="new_dni"><b>DNI</b></label>
+      <input type="text" placeholder="Enter Username" name="new_dni" required>
+      <label for="new_password"><b>Password</b></label>
+      <input type="text" placeholder="Enter Username" name="new_password" required>
+
+      <button type="submit">registro</button>
+    </form>
+  </div>
+{% endblock %}
